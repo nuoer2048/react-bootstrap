@@ -8,6 +8,7 @@ import {
 } from 'react-overlays/DropdownMenu';
 import useMergedRefs from '@restart/hooks/useMergedRefs';
 import warning from 'warning';
+import InputGroupContext from './InputGroupContext';
 import NavbarContext from './NavbarContext';
 import { useBootstrapPrefix } from './ThemeProvider';
 import useWrappedRefWithWarning from './useWrappedRefWithWarning';
@@ -151,6 +152,7 @@ const DropdownMenu: BsPrefixRefForwardingComponent<
   ) => {
     const isNavbar = useContext(NavbarContext);
     const prefix = useBootstrapPrefix(bsPrefix, 'dropdown-menu');
+    const isInputGroup = useContext(InputGroupContext);
 
     const alignClasses: string[] = [];
     if (align) {
@@ -195,7 +197,7 @@ const DropdownMenu: BsPrefixRefForwardingComponent<
       menuProps.ref,
     );
 
-    if (!hasShown && !renderOnMount) return null;
+    if (!hasShown && !renderOnMount && !isInputGroup) return null;
 
     // For custom components provide additional, non-DOM, props;
     if (typeof Component !== 'string') {
