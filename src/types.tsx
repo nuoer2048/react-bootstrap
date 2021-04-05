@@ -39,3 +39,5 @@ export type ArrowProps = {
 };
 
 export type RootCloseEvent = 'click' | 'mousedown';
+
+export type EventKey = string | number;
